@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  poster: MyString
+  desc: MyString
+  rating: MyString
+  genre: MyString
+  cast: MyString
+  trailer: MyString
+  reviews: MyString
+  tweets: MyString
+  similar_movies: MyText
+  other_information: MyText
+
+two:
+  name: MyString
+  poster: MyString
+  desc: MyString
+  rating: MyString
+  genre: MyString
+  cast: MyString
+  trailer: MyString
+  reviews: MyString
+  tweets: MyString
+  similar_movies: MyText
+  other_information: MyText
