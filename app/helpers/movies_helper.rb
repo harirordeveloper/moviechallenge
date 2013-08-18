@@ -1,7 +1,7 @@
 module MoviesHelper
 
 	def find_movie_by_type(type)
-		 @movies = RottenList.find(:type => type).first(10)
+		 @movies = RottenList.find(:type => type).first(20)
 		 return @movies
 	end
 
