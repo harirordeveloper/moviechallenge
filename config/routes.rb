@@ -1,15 +1,17 @@
 Quantumpractice::Application.routes.draw do
-  resources :movies
-
-
   devise_for :users
-
+  devise_for :users do 
+    get '/users/sign_out' => 'devise/sessions#destroy' 
+  end
+  resources :movies
   get "home/index"
 
   match "/findmovie"=>"movies#find_movie"
 
-  root :to => 'movies#index'
+  
   match "/projects"=>"home#projects"
+
+  root :to => 'movies#index'
 
   # See how all your routes lay out with "rake routes"
 
