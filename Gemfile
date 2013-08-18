@@ -26,11 +26,15 @@ gem 'jquery-rails'
 group :development do
 	gem 'devise'
 	gem 'sqlite3'
+	gem 'rottentomatoes'
+ gem 'httparty'
 end
 
 group :production do
     gem 'devise'
 	gem 'pg'
+	gem 'rottentomatoes'
+  gem 'httparty'
 end
 
 # To use ActiveModel has_secure_password

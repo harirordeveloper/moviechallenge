@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'ProximaBold';
+    src: url('/assets/proximanova-bold-webfont-webfont.eot');
+    src: url('/assets/proximanova-bold-webfont-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/proximanova-bold-webfont-webfont.woff') format('woff'),
+         url('/assets/proximanova-bold-webfont-webfont.ttf') format('truetype'),
+         url('/assets/proximanova-bold-webfont-webfont.svg#ProximaBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'museo';
+    src: url('fonts/museo-webfont.eot');
+    src: url('fonts/museo-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/museo-webfont.woff') format('woff'),
+         url('fonts/museo-webfont.ttf') format('truetype'),
+         url('fonts/museo-webfont.svg#museo') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proxima';
+    src: url('fonts/proximanova-light-webfont-webfont.eot');
+    src: url('fonts/proximanova-light-webfont-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/proximanova-light-webfont-webfont.woff') format('woff'),
+         url('fonts/proximanova-light-webfont-webfont.ttf') format('truetype'),
+         url('fonts/proximanova-light-webfont-webfont.svg#ProximaNovaLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

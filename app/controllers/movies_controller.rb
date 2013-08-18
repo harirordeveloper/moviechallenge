@@ -3,7 +3,9 @@ class MoviesController < ApplicationController
   # GET /movies.json
   before_filter :authenticate_user!, :except=>[:index]
   def index
-    @movies = Movie.all
+    # @movies = Movie.all
+
+    @movies = RottenList.find(:type => 'in_theaters').first(10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -81,4 +83,9 @@ class MoviesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+def find_movie
+ @movie = RottenMovie.find(:title => params[:title], :expand_results => true, :limit => 1)
+end 
+
 end

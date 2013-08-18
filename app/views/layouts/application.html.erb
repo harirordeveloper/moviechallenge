@@ -1,12 +1,60 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
+
 <head>
-  <title>Quantumpractice</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <title>QUANTIUM MOVIE CHALLANGE</title>
+
+    <meta name="keywords" content="Ruby,Ruby on Rails,Ruby freelancer,Rails Freelancer,Rails outsourcing company,Ruby outsourcing company">
+
+    <meta name="author" content="Rails Galaxy Hari Krishna">
+    <meta name="copyright" content="© Copyright 2013 Rails Galaxy">
+
+    <meta http-equiv="content-language" content="EN">
+    <meta http-equiv="Content-Type" content="text/html; iso-8859-1">
+
+
+    <!-- styles -->
+    <%= stylesheet_link_tag "bootstrap" %>
+    <%= stylesheet_link_tag "bootstrap-responsive" %>
+    <%= stylesheet_link_tag "fonts" %>
+
+    <style>
+    body {
+      padding-top: 90px;
+    }
+    </style>
+
+    <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!--fav and touch icons -->
+  
 </head>
-<body>
+
+<body cz-shortcut-listen="true">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+    
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li ><a href="<%= root_path %>">Home</a></li>
+          
+        </ul>
+      </div>
+      <!--/.nav-collapse --> 
+    </div>
+  </div>
+</div>
+
 <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
 
@@ -20,5 +68,83 @@
 </div>
 <%= yield %>
 
+<div class="footer">
+  <div class="container">
+
+     
+      <div class="span9">© Copyright 2013 <a href="#"><b>Rails Galaxy </b></a>, All rights reserved.  </div>
+    </div>
+  </div>
+</div>
+
+<!-- /container --> 
+<!-- javascript --> 
+ <%= javascript_include_tag "jquery" %>
+ <%= javascript_include_tag "ga" %>
+  
+
+ <%= javascript_include_tag "bootstrap-transition" %>
+
+ <%= javascript_include_tag "bootstrap-tooltip" %>
+
+ <%= javascript_include_tag "bootstrap-popover" %>
+ <%= javascript_include_tag "bootstrap-button" %>
+ <%= javascript_include_tag "bootstrap-collapse" %>
+ <%= javascript_include_tag "bootstrap-carousel" %>
+
+ <%= javascript_include_tag "bootstrap-typeahead" %>
+ <%= javascript_include_tag "bootstrap-typeahead" %>
+ <%= javascript_include_tag "feature_carousel" %>
+
+ <%= javascript_include_tag "common" %>
+ 
+ <%= javascript_include_tag "jquery.min" %>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  slider();
+
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34335433-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+
+// $('.notClicked').click(function()
+// {
+//  alert("clicked");
+//  $(this).removeClass('notClicked');
+//     $(this).addClass('active');
+//     alert(window.location.pathname);
+// });
+
+</script>
+
+<script type="text/javascript" charset="utf-8">
+
+$(window).load(function () {
+ 
+  jQuery('.nav li').each(function() {
+   
+    var href = jQuery(this).find('a').attr('href');
+    if (href === window.location.pathname) {
+      jQuery(this).addClass('active');
+    }
+  });
+});
+
+</script>
+
+
 </body>
-</html>
