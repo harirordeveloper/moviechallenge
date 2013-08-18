@@ -1,17 +1,86 @@
-<%= form_tag findmovie_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :title, params[:title],:style=>"
-    margin-left: 75%;"%>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
 
 <div class="container" style="margin-top: 2%;margin-bottom: 2%;">
     <div class="row">
-      <div class="span8" style="background-color: #f1f1f1;border-radius: 12px;text-align: center;">
-<% @movies.each do |movie| %>
-   <%= link_to movie.title, findmovie_path(:title=>movie.title) %><br/><br/>
-<% end %>
+      <div class="span12" style="background-color: #f1f1f1;border-radius: 12px;text-align: center;">
+	     <% @in_theaters = find_movie_by_type("in_theaters") %>
+	      <br/><h2>Movies In Theaters</h2><br/>
+	    
+	      <% count = 1 %>
+	      <% @in_theaters.each do |movie| %>
+				
+			<%= link_to(image_tag(movie.posters.profile,:style=>"width: 200px;height: 200px;"), findmovie_path(:title=>movie.title)) %>&nbsp&nbsp&nbsp&nbsp
+			<% if count%5==0 %><br/><br/><% end %>
+	         <% count +=1 %>
+		  <% end %>
+		  <br/>
+	    </div>
+    </div>
+    <br/>
 </div>
+
+
+
+
+<div class="container" style="margin-top: 2%;margin-bottom: 2%;">
+    <div class="row">
+      <div class="span12" style="background-color: #f1f1f1;border-radius: 12px;text-align: center;">
+	      <% @box_office = find_movie_by_type("box_office") %>
+	      <br/><h2>Movies In Box Office</h2><br/>
+	    
+	      <% count = 1 %>
+	      <% @box_office.each do |movie| %>
+				
+			<%= link_to(image_tag(movie.posters.profile,:style=>"width: 200px;height: 200px;"), findmovie_path(:title=>movie.title)) %>&nbsp&nbsp&nbsp&nbsp
+			<% if count%5==0 %><br/><br/><% end %>
+	         <% count +=1 %>
+		  <% end %>
+		  <br/>
+	    </div>
+    </div>
 </div>
+
+
+
+<div class="container" style="margin-top: 2%;margin-bottom: 2%;">
+    <div class="row">
+      <div class="span12" style="background-color: #f1f1f1;border-radius: 12px;text-align: center;">
+	      <% @opening = find_movie_by_type("opening") %>
+	      <br/><h2>Movies Opening</h2><br/>
+	    
+	      <% count = 1 %>
+	      <% @opening.each do |movie| %>
+				
+			<%= link_to(image_tag(movie.posters.profile,:style=>"width: 200px;height: 200px;"), findmovie_path(:title=>movie.title)) %>&nbsp&nbsp&nbsp&nbsp
+			<% if count%5==0 %><br/><br/><% end %>
+	         <% count +=1 %>
+		  <% end %>
+		  <br/>
+	    </div>
+    </div>
 </div>
+
+
+
+<div class="container" style="margin-top: 2%;margin-bottom: 2%;">
+    <div class="row">
+      <div class="span12" style="background-color: #f1f1f1;border-radius: 12px;text-align: center;">
+	      <% @upcoming = find_movie_by_type("upcoming") %>
+	      <br/><h2>Movies Upcoming</h1><br/>
+	    
+	      <% count = 1 %>
+	      <% @upcoming.each do |movie| %>
+				
+			<%= link_to(image_tag(movie.posters.profile,:style=>"width: 200px;height: 200px;"), findmovie_path(:title=>movie.title)) %>&nbsp&nbsp&nbsp&nbsp
+			<% if count%5==0 %><br/><br/><% end %>
+	         <% count +=1 %>
+		  <% end %>
+		  <br/>
+	    </div>
+    </div>
+</div>
+
+
+<br/><br/><br/>
+
+
+

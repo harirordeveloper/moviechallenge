@@ -1,68 +1,119 @@
+<% if @movie.empty? %>
+<div class="container" style="margin-top: 2%;margin-bottom: 2%;">
+    <div class="row">
+
+      <div class="span12" style="background-color: #f1f1f1;border-radius: 12px;">
+          <h4 style="padding: 5%;text-align: center;">No movies found </h4>
+      </div>
+    </div>
+          </div>
+<% else %>
+
 
 <div class="container" style="margin-top: 2%;margin-bottom: 2%;">
     <div class="row">
-      <div class="span8" style="background-color: #f1f1f1;border-radius: 12px;text-align: center;">
+
+      <div class="span12" style="background-color: #f1f1f1;border-radius: 12px;">
+      </br><span style="font-size: 25px;color: black;margin-left: 43%;"><%= @movie.title.upcase %></span></br></br>
+          <div class="span5" style="background-color: #f1f1f1;border-radius: 12px;">
+
+          <table>
+          	<tr>
+          		<td style="width: 150px;"><b>TITLE</b></td>
+          		<td><%= @movie.title %></td>
+          	</tr>
+            <tr style="height: 20px;"><td></td><td></td></tr> 
+          	<tr>
+          		<td><b>CAST</b></td>
+          		<td>
+          		   <% @movie.abridged_cast.each do |cast| %>
+						<ul>
+              <li> <%= cast.name %></br></li>
+            </ul>
+           
+					<% end %>
+			    </td>
+          	</tr>
+            <tr style="height: 20px;"><td></td><td></td></tr>
+          	<tr>
+          		<td><b>Critic Rating</b></td>
+          		<td><%= @movie.ratings.critics_rating %></td>
+          	</tr>
+
+            <tr style="height: 20px;"><td></td><td></td></tr>
+
+          	<tr>
+          		<td><b>Critic Score</b> </td>
+          		<td><%= @movie.ratings.critics_score %></td>
+          	</tr>
+
+            <tr style="height: 20px;"><td></td><td></td></tr>
 
 
-TITLE : <%= @movie.title %></br></br>
+          	<tr>
+          		<td><b>Audience Rating</b></td>
+          		<td><%= @movie.ratings.audience_rating %></td>
+          	</tr>
 
-<%= image_tag @movie.posters.profile %></br></br></br>
+            <tr style="height: 20px;"><td></td><td></td></tr>
 
-<b>CAST </b></br>
-<% @movie.abridged_cast.each do |cast| %>
 
-<%= cast.name %></br>
+          	<tr>
+          		<td><b>Audience Score</b></td>
+          		<td><%= @movie.ratings.audience_score %></td>
+          	</tr>
 
+            <tr style="height: 20px;"><td></td><td></td></tr>
+
+            <tr>
+              <td><b>Trailer</b></td>
+              <td><a href="<%= trailer %>">Click here to view trailer</a></td>
+            </tr>
+
+            <tr style="height: 20px;"><td></td><td></td></tr>
+
+
+            <tr>
+              <td><b>Sinopsis</b></td>
+              <td><%= @movie.synopsis %></td>
+            </tr>
+
+            <tr style="height: 20px;"><td></td><td></td></tr>
+
+            <tr>
+              <td><b>Similar Movies</b></td>
+              <td><% similar_movies.each do |movie| %>
+                    <ul><li><%=link_to movie["title"],findmovie_path(:title=>movie["title"]) %></li></ul>
+                   <% end %>
+                   <% if similar_movies.nil? %>
+                    No Similar kind of movies 
+                   <% end %>
+              </td>
+            </tr>
+            <tr style="height: 20px;"><td></td><td></td></tr>
+          </table>
+			 
+
+
+
+			
+
+			
+		</div>
+
+		<div class="span5" style="background-color: #f1f1f1;border-radius: 12px;text-align: center;">
+			<%= image_tag @movie.posters.original,:style=>"width: 400px;height: 500px;" %>
+			<br/><br/><br/><br/><br/><br/>
+
+
+			
+		</div>
+    
+
+    </div>
+    </div>
+
+        </div>
+    </div>
+</div>
 <% end %>
-
-Critic Rating : <%= @movie.ratings.critics_rating %><br/>
-Critic Score : <%= @movie.ratings.critics_score %><br/>
-Audience Rating :<%= @movie.ratings.audience_rating %><br/>
-Audience Score : <%= @movie.ratings.audience_score %><br/>
-
-
- 
-
- <% response =  HTTParty.get("#{@movie.links.similar}?apikey=46ahrg93dj6aqf8g7vt7yaaa") %>
-
-  <% response["movies"].each do |movie| %>
-   <%= movie %>
-  <% end %>
-
-
-<br/>
-<% i= 0 %>
-<% video =  HTTParty.get("#{@movie.links.clips}?apikey=46ahrg93dj6aqf8g7vt7yaaa") %>
- <% video["clips"].each do |item| %>
- <%if i<1 %>
-    <% @tag= item["links"]["alternate"] %><br/>
-
-    <% end %>
-<% i=i+1 %> 
-
- <% end %>
-
-<video width="320" height="240" controls>
-  <source src="<%= @tag %>" type="video/mp4">
-  
-</video>
- 
-
-</div>
-</div>
-</div>
-
-<!--  
-@movie = RottenMovie.find(:title => 'Fight Club', :expand_results => true, :limit => 1)
- => #<PatchedOpenStruct id="13153", title="Fight Club", year=1999, mpaa_rating="R", runtime=139, critics_consensus="Solid acting, amazing direction, and elaborate production design make Fight Club a wild ride.", release_dates=#<PatchedOpenStruct theater="1999-10-15", dvd="2000-06-06">, 
-
- ratings=#<PatchedOpenStruct critics_rating="Certified Fresh", critics_score=81, audience_rating="Upright", audience_score=95>, synopsis="", posters=#<PatchedOpenStruct thumbnail="http://content7.flixster.com/movie/11/16/48/11164849_mob.jpg", profile="http://content7.flixster.com/movie/11/16/48/11164849_pro.jpg", detailed="http://content7.flixster.com/movie/11/16/48/11164849_det.jpg", original="http://content7.flixster.com/movie/11/16/48/11164849_ori.jpg">,
-
-  abridged_cast=[#<PatchedOpenStruct name="Edward Norton", id="162660884", characters=["Narrator"]>, #<PatchedOpenStruct name="Brad Pitt", id="162652627", characters=["Tyler Durden"]>, #<PatchedOpenStruct name="Helena Bonham Carter", id="162652820", characters=["Marla Singer"]>, #<PatchedOpenStruct name="Meat Loaf", id="162676383", characters=["Big Bob Paulson"]>, #<PatchedOpenStruct name="Jared Leto", id="162653925", characters=["Angel Face"]>], 
-
-  alternate_ids=#<PatchedOpenStruct imdb="0137523">, 
-  links=#<PatchedOpenStruct self="http://api.rottentomatoes.com/api/public/v1.0/movies/13153.json", alternate="http://www.rottentomatoes.com/m/fight_club/", cast="http://api.rottentomatoes.com/api/public/v1.0/movies/13153/cast.json", clips="http://api.rottentomatoes.com/api/public/v1.0/movies/13153/clips.json", reviews="http://api.rottentomatoes.com/api/public/v1.0/movies/13153/reviews.json",
-   similar="http://api.rottentomatoes.com/api/public/v1.0/movies/13153/similar.json">, raw_data={"id"=>"13153", "title"=>"Fight Club", "year"=>1999, "mpaa_rating"=>"R", "runtime"=>139, "critics_consensus"=>"Solid acting, amazing direction, and elaborate production design make Fight Club a wild ride.", "release_dates"=>{"theater"=>"1999-10-15", "dvd"=>"2000-06-06"}, "ratings"=>{"critics_rating"=>"Certified Fresh", "critics_score"=>81, "audience_rating"=>"Upright", "audience_score"=>95}, "synopsis"=>"", "posters"=>{"thumbnail"=>"http://content7.flixster.com/movie/11/16/48/11164849_mob.jpg", "profile"=>"http://content7.flixster.com/movie/11/16/48/11164849_pro.jpg", "detailed"=>"http://content7.flixster.com/movie/11/16/48/11164849_det.jpg", "original"=>"http://content7.flixster.com/movie/11/16/48/11164849_ori.jpg"}, "abridged_cast"=>[{"name"=>"Edward Norton", "id"=>"162660884", "characters"=>["Narrator"]}, {"name"=>"Brad Pitt", "id"=>"162652627", "characters"=>["Tyler Durden"]}, {"name"=>"Helena Bonham Carter", "id"=>"162652820", "characters"=>["Marla Singer"]}, {"name"=>"Meat Loaf", "id"=>"162676383", "characters"=>["Big Bob Paulson"]}, {"name"=>"Jared Leto", "id"=>"162653925", "characters"=>["Angel Face"]}], "alternate_ids"=>{"imdb"=>"0137523"}, 
-
-  "links"=>{"self"=>"http://api.rottentomatoes.com/api/public/v1.0/movies/13153.json", "alternate"=>"http://www.rottentomatoes.com/m/fight_club/", "cast"=>"http://api.rottentomatoes.com/api/public/v1.0/movies/13153/cast.json", "clips"=>"http://api.rottentomatoes.com/api/public/v1.0/movies/13153/clips.json", "reviews"=>"http://api.rottentomatoes.com/api/public/v1.0/movies/13153/reviews.json", "similar"=>"http://api.rottentomatoes.com/api/public/v1.0/movies/13153/similar.json"}}> 
- -->

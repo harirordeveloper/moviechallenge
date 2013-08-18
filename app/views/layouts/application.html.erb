@@ -47,6 +47,10 @@
       <div class="nav-collapse">
         <ul class="nav">
           <li ><a href="<%= root_path %>">Home</a></li>
+          <li class="login">
+            
+          </li>
+         
           
         </ul>
       </div>
@@ -55,24 +59,40 @@
   </div>
 </div>
 
-<p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+<div id="user_nav" style="margin-top: 15px;">
+<table style="width: 100%;">
+  <tr>
+    <td>
+        <% if user_signed_in? %>
+        Welcome <b><%= current_user.email %> !</b>.
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete,:class=>"btn btn-warning btn-small" %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path,:class=>"btn btn-warning btn-large"%> or <%= link_to "sign in", new_user_session_path,:class=>"btn btn-warning btn-large" %>
+      <% end %>
+    </td>
+    <td style="text-align: right;">
+      <%= form_tag findmovie_path, :method => 'get',:style=>"margin: 0;" do %>
+  
+        <%= text_field_tag :title, params[:title],:placeholder => 'Search your favourite movies'%>
+        <%= submit_tag "Search", :name => nil,:class=>"btn btn-warning btn-small" %>
+    
+      <% end %>
+    </td>
+  </tr>
+</table>
+  
 
-<div id="user_nav">
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. Not you?
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-  <% end %>
+
+
+
 </div>
 <%= yield %>
 
 <div class="footer">
   <div class="container">
 
-     
-      <div class="span9">© Copyright 2013 <a href="#"><b>Rails Galaxy </b></a>, All rights reserved.  </div>
+     <h4>Developed by Hari Krishna</h4>
+      <div class="span9"></div>
     </div>
   </div>
 </div>
@@ -99,6 +119,7 @@
  <%= javascript_include_tag "common" %>
  
  <%= javascript_include_tag "jquery.min" %>
+<%= javascript_include_tag "highcharts" %>
 
 
 

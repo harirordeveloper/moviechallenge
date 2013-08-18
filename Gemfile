@@ -28,6 +28,7 @@ group :development do
 	gem 'sqlite3'
 	gem 'rottentomatoes'
  gem 'httparty'
+ gem 'will_paginate', "~> 3.0.4"
 end
 
 group :production do
